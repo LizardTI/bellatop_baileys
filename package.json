@@ -1,0 +1,30 @@
+{
+  "name": "baileys-wa-bot",
+  "version": "1.0.0",
+  "description": "Prove of concept about the features and ways of utilizing baileys for commercial needs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/woragis/baileys-wa-bot.git"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "whatsapp-bot",
+    "baileys-bot",
+    "baileys-wa-bot",
+    "baileys-whatsapp-bot",
+    "baileys-whatsapp",
+    "wa-bot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woragis/baileys-wa-bot/issues"
+  },
+  "homepage": "https://github.com/woragis/baileys-wa-bot#readme"
+}
