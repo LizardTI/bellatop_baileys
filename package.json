@@ -26,5 +26,13 @@
   "bugs": {
     "url": "https://github.com/woragis/baileys-wa-bot/issues"
   },
-  "homepage": "https://github.com/woragis/baileys-wa-bot#readme"
+  "homepage": "https://github.com/woragis/baileys-wa-bot#readme",
+  "dependencies": {
+    "@types/qrcode-terminal": "^0.12.2",
+    "@whiskeysockets/baileys": "^6.7.9",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
 }
