@@ -4,9 +4,18 @@ import {
   WAMessage,
   WASocket,
   ConnectionState,
+  MessageUpsertType,
 } from "@whiskeysockets/baileys";
+import QRCode from "qrcode-terminal"; // Import qrcode-terminal
 
 export async function startBot(): Promise<WASocket> {
+  // types
+  interface MessagesUpsert {
+    messages: WAMessage[];
+    type: MessageUpsertType;
+    requestId?: string;
+  }
+
   const { state, saveCreds } = await useMultiFileAuthState("./auth_info");
 
   const sock: WASocket = makeWASocket({
@@ -14,11 +23,16 @@ export async function startBot(): Promise<WASocket> {
     printQRInTerminal: true,
   });
 
+  sock.ev.on<any>("qr", (qr: string) => {
+    console.log("QR Code data:", qr);
+    QRCode.generate(qr, { small: true });
+  });
+
   // Save credentials when updated
   sock.ev.on("creds.update", saveCreds);
 
   // Listen for incoming messages
-  sock.ev.on("messages.upsert", async (messageUpdate) => {
+  sock.ev.on("messages.upsert", async (messageUpdate: MessagesUpsert) => {
     const message: WAMessage = messageUpdate.messages[0];
     if (!message.key.fromMe && message.message) {
       const sender = message.key.remoteJid;
@@ -29,10 +43,8 @@ export async function startBot(): Promise<WASocket> {
           )}\n`
         );
 
-        // Respond with "hello"
-        // await sock.sendMessage(sender, { text: "hello" });
-        // Needs to be sent to other api
-        // standby code
+        // Talk to AI or whatever you need to process here
+        // send ai response to user or other actions
       }
     }
   });
