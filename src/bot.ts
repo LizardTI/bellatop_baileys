@@ -6,10 +6,10 @@ import {
   ConnectionState,
   MessageUpsertType,
 } from "@whiskeysockets/baileys";
-import QRCode from "qrcode-terminal"; // Import qrcode-terminal
+import QRCode from "qrcode-terminal";
+import { getAiResponse } from "./ai";
 
 export async function startBot(): Promise<WASocket> {
-  // types
   interface MessagesUpsert {
     messages: WAMessage[];
     type: MessageUpsertType;
@@ -43,13 +43,14 @@ export async function startBot(): Promise<WASocket> {
           )}\n`
         );
 
-        // Talk to AI or whatever you need to process here
-        // send ai response to user or other actions
+        // send to user
+        const text: string = await getAiResponse(message);
+        await sock.sendMessage(sender, { text });
+        console.log("Response sent to user successfully");
       }
     }
   });
 
-  // Handle connection updates
   sock.ev.on("connection.update", (update: Partial<ConnectionState>) => {
     const { connection, lastDisconnect } = update;
 
