@@ -7,7 +7,7 @@ import {
   MessageUpsertType,
 } from "@whiskeysockets/baileys";
 import QRCode from "qrcode-terminal";
-import { getAiResponse } from "./ai";
+import { getAiResponse } from "./ai.js";
 
 export async function startBot(): Promise<WASocket> {
   interface MessagesUpsert {
